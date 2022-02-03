@@ -61,17 +61,22 @@ for idx in data:
         p = idx[0:-3].split(',')
         # Eliminates empty data and appends to each corresponding list based on position
         if p[0] != "" and p[1] != "":
-            x.append(p[0])
-            y.append(p[1])
+            x.append(float(p[0])/1000)
+            y.append(float(p[1]))
     # Adds to run for each iteration of the loop
     runs += 1
 
 # Plot the resulting data
+
+fig = plt.figure()
 # Set the x and y tick ranges for the axes
-plt.xticks(range(int(min(x)),int(max(x)), 10))
-plt.yticks(range(int(min(y)),int(max(y)), 10))
+plt.axis([min(x), max(x), min(y), max(y)+2000])
+#plt.xticks(range(min(x),max(x), 0.1))
+#plt.yticks(range(min(y),max(y), 2000))
 # Plot the data
 plt.plot(x,y)
+# Plot title
+plt.title('Step Response Test')
 # Axes labels for x and y axes
 plt.xlabel('Time (Sec)')
 plt.ylabel('Encoder Value (Ticks)')
