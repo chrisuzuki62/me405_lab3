@@ -69,10 +69,10 @@ for idx in data:
 # Plot the resulting data
 
 fig = plt.figure()
+
 # Set the x and y tick ranges for the axes
 plt.axis([min(x), max(x), min(y), max(y)+2000])
-#plt.xticks(range(min(x),max(x), 0.1))
-#plt.yticks(range(min(y),max(y), 2000))
+
 # Plot the data
 plt.plot(x,y)
 # Plot title

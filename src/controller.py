@@ -26,13 +26,14 @@ class Controller:
                 motor, and print out the data from the step response.
     '''
 
-    def __init__(self):
+    def __init__(self, enc):
         '''! 
         @brief      Constructs a controller object
         @details    Establishes the initial values used by the methods in this class. The proportional
                     gain is initially set to zero. There is an empty list used to collect encoder data.
                     Variables to keep track of time are also established
         '''
+        self.queue = enc
         
         ## Proportional gain for the controller
         self.gain = 0
@@ -64,6 +65,18 @@ class Controller:
         
         ## The controller output
         output = error * self.gain
+        
+        # Determine the time offset using only the first run of the controller
+        if self.runs == 1:
+            self.offset_time = utime.ticks_diff(utime.ticks_ms(), self.start_time)
+                                           
+        # Collect encoder data
+        if not self.queue.full:
+         # self.queue.put([utime.ticks_diff(utime.ticks_ms(), self.start_time) - self.offset_time, current_position])
+            self.queue.put(current_position)
+            
+        # Count number of times the controller is run
+        self.runs += 1
         
         # Return output
         return output
