@@ -1,5 +1,5 @@
 """!
-@file       main.py
+@file       main_old.py
 @brief    Runs the main program and creates all objects to rotate the motor the to desired angle  
 @details  This program is to be installed and ran on the MicroPython board. It creates the class
           objects motor, controller, and encoder. The program runs a loop until the user types a
