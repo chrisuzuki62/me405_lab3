@@ -33,14 +33,21 @@ def task_motor1 ():
     mtr1.enable()
     
     while True:
-
+        
         # Establish the desired gain and position
         ctr1.set_gain(gain1.get())
         ctr1.set_position(des_position1.get())
 
         # Run the controller every 10ms
-        power = ctr1.update(enc1.read())
+        enc1_read = enc1.read()
+        power = ctr1.update(enc1_read)
         mtr1.set_duty_cycle(power)
+        
+        #
+        if not time1.full():
+            time1.put(ctr1.get_time())
+        if not encoder1.full():
+            encoder1.put(enc1_read)
 
         yield (0)
 
@@ -67,9 +74,10 @@ def data_collect ():
     """!
     
     """
-    while True:
+    while True:    
+    
         if encoder1.any():
-            print(encoder1.get())
+            print(str(time1.get()) + "," + str(encoder1.get()))
         
         yield (0)
 
@@ -78,9 +86,12 @@ def data_collect ():
 # tasks run until somebody presses ENTER, at which time the scheduler stops and
 # printouts show diagnostic information about the tasks, share, and queue.
 if __name__ == "__main__":
-    print ('\033[2JTesting ME405 stuff in cotask.py and task_share.py\r\n'
-           'Press ENTER to stop and show diagnostics.')
     
+    print ('\033[2JPress ENTER to begin\r\n'
+           '')
+    
+    #while True:
+        
     # Create a share and a queue to test function and diagnostic printouts
     gain1 = task_share.Share ('f', thread_protect = False, name = "Share Gain 1")
     gain2 = task_share.Share ('f', thread_protect = False, name = "Share Gain 2")
@@ -89,7 +100,7 @@ if __name__ == "__main__":
     des_position2 = task_share.Share ('h', thread_protect = False, name = "Share Position 2")
     
     encoder1 = task_share.Queue('i', 16, thread_protect = False, overwrite = False, name = "Queue Encoder 1")
-    encoder2 = task_share.Queue('i', 16, thread_protect = False, overwrite = False, name = "Queue Encoder 2")
+    time1 = task_share.Queue('i', 16, thread_protect = False, overwrite = False, name = "Queue Time 1")
 
     duty_cycle1 = task_share.Share ('h', thread_protect = False, name = "Share PWM 1")
     duty_cycle2 = task_share.Share ('h', thread_protect = False, name = "Share PWM 2")
@@ -105,42 +116,63 @@ if __name__ == "__main__":
     mtr2 = motor.Motor(2)
     enc1 = encoder.Encoder(1)
     enc2 = encoder.Encoder(2)
-    ctr1 = controller.Controller(encoder1)
-    ctr2 = controller.Controller(encoder2)
-    
-    # Zero encoders
-    enc1.zero()
-    enc2.zero()
+    ctr1 = controller.Controller()
+    ctr2 = controller.Controller()
 
-    # Create the tasks. If trace is enabled for any task, memory will be
-    # allocated for state transition tracing, and the application will run out
-    # of memory after a while and quit. Therefore, use tracing only for 
-    # debugging and set trace to False when it's not needed
-    task1 = cotask.Task (task_motor1, name = 'Motor 1 Task', priority = 1, 
-                         period = 10, profile = True, trace = False)
-    task2 = cotask.Task (task_motor2, name = 'Motor 2 Task', priority = 1, 
-                         period = 10, profile = True, trace = False)
-    task3 = cotask.Task (data_collect, name = 'Data Collect Task', priority = 0,
-                         period = 10, profile = True, trace = False)
-    cotask.task_list.append (task1)
-    cotask.task_list.append (task2)
-    cotask.task_list.append (task3)
-
-    # Run the memory garbage collector to ensure memory is as defragmented as
-    # possible before the real-time scheduler is started
-    gc.collect ()
-
-    # Run the scheduler with the chosen scheduling algorithm. Quit if any 
-    # character is received through the serial port
-    vcp = pyb.USB_VCP ()
-    while not vcp.any ():
-        cotask.task_list.pri_sched ()
+    while True:
         
-    mtr1.disable()
-    mtr2.disable()
+        # Zero encoders
+        enc1.zero()
+        enc2.zero()
+        
+        gain1.put(0.1)
+        gain2.put(0.1)
+        
+        des_position1.put(20000)
+        des_position2.put(20000)
+        
+        input()
+        
+        start_time = utime.ticks_ms()
 
-    # Empty the comm port buffer of the character(s) just pressed
-    vcp.read ()
+        # Create the tasks. If trace is enabled for any task, memory will be
+        # allocated for state transition tracing, and the application will run out
+        # of memory after a while and quit. Therefore, use tracing only for 
+        # debugging and set trace to False when it's not needed
+        task1 = cotask.Task (task_motor1, name = 'Motor 1 Task', priority = 1, 
+                             period = 500, profile = True, trace = False)
+        task2 = cotask.Task (task_motor2, name = 'Motor 2 Task', priority = 1, 
+                             period = 10, profile = True, trace = False)
+        task3 = cotask.Task (data_collect, name = 'Data Collect Task', priority = 0,
+                             period = 10, profile = True, trace = False)
+        cotask.task_list.append (task1)
+        cotask.task_list.append (task2)
+        cotask.task_list.append (task3)
+
+        # Run the memory garbage collector to ensure memory is as defragmented as
+        # possible before the real-time scheduler is started
+        gc.collect ()
+
+        # Run the scheduler with the chosen scheduling algorithm. Quit if any 
+        # character is received through the serial port
+        vcp = pyb.USB_VCP ()
+        
+        #while not vcp.any ():
+        while utime.ticks_diff(utime.ticks_ms(), start_time)/1000 < 2:
+            cotask.task_list.pri_sched ()
+            
+        mtr1.disable()
+        mtr2.disable()
+
+        # Empty the comm port buffer of the character(s) just pressed
+        vcp.read ()
+        
+        time1.clear()
+        encoder1.clear()
+        ctr1.zero_runs()
+        ctr2.zero_runs()
+        
+        print("DATA")
 
     # Print a table of task data and a table of shared information data
 #     print ('\n' + str (cotask.task_list))
