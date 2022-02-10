@@ -1,0 +1,25 @@
+var main_8py =
+[
+    [ "data_collect", "main_8py.html#a4ab180ae1285e4607e5aa5a1603eb118", null ],
+    [ "task_motor1", "main_8py.html#ae155ded44dc58fe67c2e6dad1a8db532", null ],
+    [ "task_motor2", "main_8py.html#a81f7dc045586302bf68fc8ac6f317bcd", null ],
+    [ "ctr1", "main_8py.html#a8341b4a5b9c7e1dc7c6657cd5bfa82e0", null ],
+    [ "ctr2", "main_8py.html#af5d7ee62990ee77fcf375302bae524be", null ],
+    [ "des_position1", "main_8py.html#acaeec273b9c029833debd30fb06fe85a", null ],
+    [ "des_position2", "main_8py.html#a24bba96b369f243c4e4019829eab9fa3", null ],
+    [ "duty_cycle1", "main_8py.html#a593eaa433f1a91f3fafbe0b4ca034606", null ],
+    [ "duty_cycle2", "main_8py.html#afe7767c26f84049c01a9c244ebdd2980", null ],
+    [ "enc1", "main_8py.html#a120ad412b4254af981df604b899a6ebf", null ],
+    [ "enc2", "main_8py.html#a8290cb0b8b6ee24c36bb6a5b924a3fe5", null ],
+    [ "encoder1", "main_8py.html#aba9d9b2352ce59c6a1f84ee47dc46dd6", null ],
+    [ "gain1", "main_8py.html#a71346215301e6617c47e07176af251f5", null ],
+    [ "gain2", "main_8py.html#a805c6529000a165d4efac61910f4cbd3", null ],
+    [ "mtr1", "main_8py.html#a6b37aa78c8392fb2a17010d77538dd60", null ],
+    [ "mtr2", "main_8py.html#a298482de08f410e7f7ae606b4f5b61ff", null ],
+    [ "start_time", "main_8py.html#ae57958345b17f9ca8597330ba07e1a1c", null ],
+    [ "task1", "main_8py.html#af4b8f4290f8d32e70654f6deb864787f", null ],
+    [ "task2", "main_8py.html#a99d189b8f9eb3784cf7d4e5c3241b562", null ],
+    [ "task3", "main_8py.html#a120516a5d42c212c898d4616d266077a", null ],
+    [ "time1", "main_8py.html#aad29b4ea0b858dbb870a45904dd296b1", null ],
+    [ "vcp", "main_8py.html#a5854bd125b139389df502649ad7b0c9c", null ]
+];
