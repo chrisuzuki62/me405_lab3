@@ -9,7 +9,7 @@
     @author Damond Li
     @author Chris Or
     @author Chris Suzuki
-    @date 2/3/22
+    @date 2/10/22
 """
 
 import pyb
@@ -138,9 +138,25 @@ class Controller:
         self.runs = 1
     
     def get_time(self):
+        '''! 
+        @brief      Returns the current time in miliseconds relative to when the update method is first run
+        @details    This method returns the time elapsed since the update method is first run. This method
+                    allows the user to retrieve the current time elapsed in the main script. There is an
+                    offset time which is used to zero the starting time. In order to zero the starting time,
+                    simply run the zero_runs method as the number of runs indicate whether or not to recalculate
+                    the offset time
+        @return     Returns the time elapsed since the starting reference time
+        '''
+        # Calculates the difference between the current time and start time and then subtracts the offset time
         return(utime.ticks_diff(utime.ticks_ms(), self.start_time) - self.offset_time)
     
     def zero_runs(self):
+        '''! 
+        @brief      Zeros the counter indicating how many times the update method has been run.
+        @details    On the very first run of the update method, the offset time is calculated so that the
+                    first time value returned is zero. Run this method to reset the number of runs.
+        '''
+        # Sets the number of runs to 1
         self.runs = 1
         
 

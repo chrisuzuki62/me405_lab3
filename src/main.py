@@ -98,21 +98,29 @@ if __name__ == "__main__":
            '')
         
     # Create shares for gain
+    ## A shares object handling the gain for the first controller
     gain1 = task_share.Share ('f', thread_protect = False, name = "Share Gain 1")
+    ## A shares object handling the gain for the second controller
     gain2 = task_share.Share ('f', thread_protect = False, name = "Share Gain 2")
     
     # Create shares for desired position
+    ## A shares object handling the desired position for the first controller
     des_position1 = task_share.Share ('h', thread_protect = False, name = "Share Position 1")
+    ## A shares object handling the desired position for the second controller
     des_position2 = task_share.Share ('h', thread_protect = False, name = "Share Position 2")
     
     # Create queue for encoder reading
+    ## A queues object storing the positional data from controller 1
     encoder1 = task_share.Queue('i', 16, thread_protect = False, overwrite = False, name = "Queue Encoder 1")
     
     # Create queue for time data
+    ## A queues object storing the time data from controller 1
     time1 = task_share.Queue('i', 16, thread_protect = False, overwrite = False, name = "Queue Time 1")
 
     # Create shares for duty cycle
+    ## A shares object handling the duty cycle for motor 1
     duty_cycle1 = task_share.Share ('h', thread_protect = False, name = "Share PWM 1")
+    ## A shares object handling the duty cycle for motor 2
     duty_cycle2 = task_share.Share ('h', thread_protect = False, name = "Share PWM 2")
     
     # Set values for gain for each motor
@@ -124,16 +132,23 @@ if __name__ == "__main__":
     des_position2.put(20000)
     
     # Create motor, encoder, and controller objects
+    
+    ## Motor object for motor 1
     mtr1 = motor.Motor(1)
+    ## Motor object for motor 2
     mtr2 = motor.Motor(2)
+    ## Encoder object for encoder 1
     enc1 = encoder.Encoder(1)
+    ## Encoder object for encoder 2
     enc2 = encoder.Encoder(2)
+    ## Controller object for motor 1 and encoder 1
     ctr1 = controller.Controller()
+    ## Controller object for motor 2 and encoder 2
     ctr2 = controller.Controller()
 
     while True:
         
-        # Zero encoders every run
+        # Zero both encoders
         enc1.zero()
         enc2.zero()
         
@@ -145,10 +160,10 @@ if __name__ == "__main__":
         des_position1.put(20000)
         des_position2.put(20000)
         
-        # Start run at any input value
+        # Wait for an input through the serial port
         input()
         
-        # Create start time for time data to be collected and plotted
+        # Establish the initial reference time
         start_time = utime.ticks_ms()
         
         # Create task objects for the motor tasks and data collection task and set the period.
@@ -189,5 +204,5 @@ if __name__ == "__main__":
         ctr1.zero_runs()
         ctr2.zero_runs()
         
-        # printint 'DATA' indicates that the data collection has been completed
+        # Printing 'DATA' indicates that the data collection has been completed
         print("DATA")
