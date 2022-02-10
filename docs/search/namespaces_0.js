@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['basic_5ftasks_0',['basic_tasks',['../namespacebasic__tasks.html',1,'']]]
+  ['controller_0',['controller',['../namespacecontroller.html',1,'']]],
+  ['cotask_1',['cotask',['../namespacecotask.html',1,'']]]
 ];

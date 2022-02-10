@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main_2epy_0',['main.py',['../main_8py.html',1,'']]],
-  ['main_5fold_2epy_1',['main_old.py',['../main__old_8py.html',1,'']]],
-  ['motor_2epy_2',['motor.py',['../motor_8py.html',1,'']]]
+  ['pc_5fcom_2epy_0',['pc_com.py',['../pc__com_8py.html',1,'']]],
+  ['print_5ftask_2epy_1',['print_task.py',['../print__task_8py.html',1,'']]]
 ];

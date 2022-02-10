@@ -1,14 +1,5 @@
 var namespaces_dup =
 [
-    [ "basic_tasks", "namespacebasic__tasks.html", [
-      [ "task1_fun", "namespacebasic__tasks.html#aab3cf414d7d5a93c8c76e0ba149c4000", null ],
-      [ "task2_fun", "namespacebasic__tasks.html#a9a99b51f52883ec0e0f451aab6208172", null ],
-      [ "q0", "namespacebasic__tasks.html#a01bc6affced1a04bea251ea226442014", null ],
-      [ "share0", "namespacebasic__tasks.html#a5e57826dfa518c88be513bb2d009f69a", null ],
-      [ "task1", "namespacebasic__tasks.html#a512968d7007686bc14b9a23c3238d34c", null ],
-      [ "task2", "namespacebasic__tasks.html#a43a58f09d457ac7d8466f8b12c587e93", null ],
-      [ "vcp", "namespacebasic__tasks.html#a8e78dc26f6414c74c4975916385214f9", null ]
-    ] ],
     [ "controller", "namespacecontroller.html", "namespacecontroller" ],
     [ "cotask", "namespacecotask.html", "namespacecotask" ],
     [ "encoder", "namespaceencoder.html", "namespaceencoder" ],
@@ -35,14 +26,6 @@ var namespaces_dup =
       [ "task3", "namespacemain.html#a120516a5d42c212c898d4616d266077a", null ],
       [ "time1", "namespacemain.html#aad29b4ea0b858dbb870a45904dd296b1", null ],
       [ "vcp", "namespacemain.html#a5854bd125b139389df502649ad7b0c9c", null ]
-    ] ],
-    [ "main_old", "namespacemain__old.html", [
-      [ "ctr", "namespacemain__old.html#a97cbbd8979bed78afa047364818f6911", null ],
-      [ "enc1", "namespacemain__old.html#a06f92373f0dcf527e1a150bf3c06137c", null ],
-      [ "mtr1", "namespacemain__old.html#a818094282b9ada44cb4c7d521240f7f6", null ],
-      [ "positional_data", "namespacemain__old.html#a5715b561f6197a2889bff705386f4141", null ],
-      [ "power", "namespacemain__old.html#a7b5d1b4e737a2e88185c61f8dca9fe46", null ],
-      [ "start_time", "namespacemain__old.html#a70470f740dea2e990d30db7296f9509b", null ]
     ] ],
     [ "motor", "namespacemotor.html", "namespacemotor" ],
     [ "pc_com", "namespacepc__com.html", [

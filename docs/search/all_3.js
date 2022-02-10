@@ -8,7 +8,7 @@ var searchData=
   ['controller_2epy_5',['controller.py',['../controller_8py.html',1,'']]],
   ['cotask_6',['cotask',['../namespacecotask.html',1,'']]],
   ['cotask_2epy_7',['cotask.py',['../cotask_8py.html',1,'']]],
-  ['ctr_8',['ctr',['../namespacecontroller.html#af7fd7431274811957fa95525d12c802e',1,'controller.ctr()'],['../namespacemain__old.html#a97cbbd8979bed78afa047364818f6911',1,'main_old.ctr()']]],
+  ['ctr_8',['ctr',['../namespacecontroller.html#af7fd7431274811957fa95525d12c802e',1,'controller']]],
   ['ctr1_9',['ctr1',['../namespacemain.html#a8341b4a5b9c7e1dc7c6657cd5bfa82e0',1,'main']]],
   ['ctr2_10',['ctr2',['../namespacemain.html#af5d7ee62990ee77fcf375302bae524be',1,'main']]],
   ['current_5fpos_11',['current_pos',['../classencoder_1_1_encoder.html#a4e68158918ce95e283a841587d92084a',1,'encoder::Encoder']]]
